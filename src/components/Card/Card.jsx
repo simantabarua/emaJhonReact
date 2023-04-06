@@ -1,7 +1,7 @@
 import React from "react";
 
-const Card = (props) => {
-  const { name, img, price } = props.product;
+const Card = ({ product, handleAddToCart }) => {
+  const { name, img, price } = product;
 
   return (
     <>
@@ -16,7 +16,7 @@ const Card = (props) => {
             <button
               className="p-2 rounded-lg w-full bg-orange-400"
               onClick={() => {
-                props.handleCart(props.product);
+                handleAddToCart(product);
               }}
             >
               Buy Now
