@@ -3,6 +3,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from "./App";
+import CheckOut from "./components/CheckOut/CheckOut";
 import Error from "./components/Error/Error";
 import Home from "./components/Home/Home";
 import Inventory from "./components/Inventory/Inventory";
@@ -18,10 +19,11 @@ const router = createBrowserRouter([
     errorElement: <Error />,
     children: [
       { path: "/", element: <Home /> },
-      { path: "/shop", element: <Shop /> },
-      { path: "/orders", element: <Orders /> },
-      { path: "/login", element: <Login /> },
-      { path: "/inventory", element: <Inventory /> },
+      { path: "shop", element: <Shop /> },
+      { path: "orders", element: <Orders /> },
+      { path: "login", element: <Login /> },
+      { path: "inventory", element: <Inventory /> },
+      { path: "checkout", element: <CheckOut /> },
     ],
   },
 ]);

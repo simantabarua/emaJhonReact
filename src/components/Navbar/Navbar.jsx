@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import logo from "./../../assets/images/Logo.svg";
 const Navbar = () => {
   return (
@@ -9,11 +9,12 @@ const Navbar = () => {
       </div>
       <div>
         <ul className="flex gap-5 px-5">
-          <Link to="/shop">Shop </Link>
-          <Link to="/orders">Orders</Link>
-          <Link to="/inventory">Inventory</Link>
-          <Link to="/login">Login</Link>
-          <Link to="/contact">Contact</Link>
+         
+            <NavLink className={({ isActive }) => (isActive ? "text-orange-500 hover:text-orange-200" : "hover:text-orange-200")} to="/shop">Shop</NavLink>
+            <NavLink className={({ isActive }) => (isActive ? "text-orange-500 hover:text-orange-200" : "hover:text-orange-200")} to="/orders">Orders</NavLink>
+            <NavLink className={({ isActive }) => (isActive ? "text-orange-500 hover:text-orange-200" : "hover:text-orange-200")} to="/inventory">Inventory</NavLink>
+            <NavLink className={({ isActive }) => (isActive ? "text-orange-500 hover:text-orange-200" : "hover:text-orange-200")} to="/login">Login</NavLink>
+            <NavLink className={({ isActive }) => (isActive ? "text-orange-500 hover:text-orange-200" : "hover:text-orange-200")} to="/contact">Contact</NavLink>
         </ul>
       </div>
     </div>

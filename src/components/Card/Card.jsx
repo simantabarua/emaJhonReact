@@ -2,10 +2,9 @@ import React from "react";
 
 const Card = ({ product, handleAddToCart }) => {
   const { name, img, price } = product;
-
   return (
     <>
-      <div className="card w-80 bg-base-100 shadow-xl">
+      <div className="card w-80 h-96 bg-base-100 shadow-xl">
         <figure>
           <img src={img} className="w-full h-64 object-cover" alt="Shoes" />
         </figure>

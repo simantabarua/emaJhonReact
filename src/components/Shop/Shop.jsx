@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import loadData from "../../api/dataLoad";
+import { useHandleCart } from "../../utilities/useHandleCart";
 import Card from "../Card/Card";
 import Cart from "../Cart/Cart";
 
@@ -7,6 +9,7 @@ const Shop = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const { handleAddToCart, carts } = useHandleCart();
 
   useEffect(() => {
     const productLoad = async () => {
@@ -22,20 +25,12 @@ const Shop = () => {
     productLoad();
   }, []);
 
-  const [carts, setCarts] = useState([]);
-
-  const handleAddToCart = (product) => {
-    const productInCart = carts.find((item) => item.id === product.id);
-    if (!productInCart) {
-      const newCart = [...carts, product];
-      setCarts(newCart);
-      localStorage.setItem("cartItems", JSON.stringify(newCart));
-    }
-  };
-  useEffect(() => {
-    const cartItems = JSON.parse(localStorage.getItem("cartItems") || "[]");
-    setCarts(cartItems);
-  }, []);
+  if (loading) {
+    return <div className="text-4xl text-center p-10">Loading...</div>;
+  }
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  }
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-4 gap-1">
@@ -52,7 +47,11 @@ const Shop = () => {
         </div>
       </div>
       <div className=" md:col-span-1">
-        <Cart carts={carts} />
+        <Cart carts={carts}>
+          <Link to="/orders">
+            <button className="btn btn-secondary w-full">Go to Order </button>
+          </Link>
+        </Cart>
       </div>
     </div>
   );
