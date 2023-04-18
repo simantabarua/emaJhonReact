@@ -10,11 +10,11 @@ const Navbar = () => {
       <div>
         <ul className="flex gap-5 px-5">
          
-            <NavLink className={({ isActive }) => (isActive ? "text-orange-500 hover:text-orange-200" : "hover:text-orange-200")} to="/shop">Shop</NavLink>
-            <NavLink className={({ isActive }) => (isActive ? "text-orange-500 hover:text-orange-200" : "hover:text-orange-200")} to="/orders">Orders</NavLink>
-            <NavLink className={({ isActive }) => (isActive ? "text-orange-500 hover:text-orange-200" : "hover:text-orange-200")} to="/inventory">Inventory</NavLink>
-            <NavLink className={({ isActive }) => (isActive ? "text-orange-500 hover:text-orange-200" : "hover:text-orange-200")} to="/login">Login</NavLink>
-            <NavLink className={({ isActive }) => (isActive ? "text-orange-500 hover:text-orange-200" : "hover:text-orange-200")} to="/contact">Contact</NavLink>
+            <NavLink  to="/shop">Shop</NavLink>
+            <NavLink  to="/orders">Orders</NavLink>
+            <NavLink  to="/inventory">Inventory</NavLink>
+            <NavLink  to="/login">Login</NavLink>
+            <NavLink  to="/signup">Sign Up</NavLink>
         </ul>
       </div>
     </div>

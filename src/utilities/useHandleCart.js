@@ -12,11 +12,16 @@ export const useHandleCart = () => {
       localStorage.setItem("cartItems", JSON.stringify(newCart));
     }
   };
-
+  const clearCart = () => {
+    setCarts([]);
+    localStorage.setItem("cartItems", JSON.stringify([]));
+  };
   useEffect(() => {
     const cartItems = JSON.parse(localStorage.getItem("cartItems") || "[]");
     setCarts(cartItems);
   }, []);
 
-  return { handleAddToCart, carts, setCarts };
+  return { handleAddToCart, carts, setCarts, clearCart };
 };
+
+

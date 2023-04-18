@@ -10,12 +10,18 @@ function Orders() {
     setCarts(updatedCart);
     localStorage.setItem("cartItems", JSON.stringify(updatedCart));
   };
+  console.log(carts);
+  
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-4 gap-1">
       <div className=" md:col-span-3">
         <h1 className="text-2x font-bold p-3 text-center">
-          Total product Found: {carts.length}{" "}
+          {carts.length > 0 ? (
+            <span>Total items found {carts.length}</span>
+          ) : (
+            "No product added"
+          )}
         </h1>
         <div className="w-1/2 mx-auto ">
           {carts.map((cart, index) => (
@@ -40,11 +46,17 @@ function Orders() {
           ))}
         </div>
       </div>
-      <div className=" md:col-span-1">
-        <Cart carts={carts} >
-          <Link to="/checkout"><button className="btn btn-secondary w-full">Checkout Order </button></Link>
+      {carts.length > 0 && (
+        <div className=" md:col-span-1">
+          <Cart carts={carts} clearCart={clearCart}>
+            <Link to="/checkout">
+              <button className="btn btn-secondary w-full">
+                Checkout Order
+              </button>
+            </Link>
           </Cart>
-      </div>
+        </div>
+      )}
     </div>
   );
 }

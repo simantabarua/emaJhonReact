@@ -1,8 +1,7 @@
 import React from "react";
-
-function Cart({ carts, children }) {
+function Cart({ carts, children,clearCart }) {
   return (
-    <div className="sticky top-0 bg-orange-500 m-2 rounded-md">
+    <div className="sticky top-0 bg-orange-200 m-2 rounded-md">
       <h2 className="text-2xl p-2 text-center"> Total item: {carts.length}</h2>
       <ol className="list-inside list-decimal p-2">
         {carts.map((cart, index) => (
@@ -11,8 +10,8 @@ function Cart({ carts, children }) {
           </li>
         ))}
       </ol>
-      <div className="text-center ">
-        <button className="btn btn-primary w-full">Clear Cart</button>
+      <div className="text-center flex flex-col gap-2 ">
+        <button className="btn btn-primary w-full" onClick={clearCart}>Clear Cart</button>
         {children}
       </div>
     </div>

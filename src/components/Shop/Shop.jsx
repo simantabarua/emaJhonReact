@@ -9,7 +9,7 @@ const Shop = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const { handleAddToCart, carts } = useHandleCart();
+  const { handleAddToCart, carts, clearCart } = useHandleCart();
 
   useEffect(() => {
     const productLoad = async () => {
@@ -46,13 +46,15 @@ const Shop = () => {
           ))}
         </div>
       </div>
-      <div className=" md:col-span-1">
-        <Cart carts={carts}>
-          <Link to="/orders">
-            <button className="btn btn-secondary w-full">Go to Order </button>
-          </Link>
-        </Cart>
-      </div>
+      {carts.length>0 && (
+        <div className=" md:col-span-1">
+          <Cart carts={carts} clearCart={clearCart}>
+            <Link to="/orders">
+              <button className="btn btn-secondary w-full">Go to Order </button>
+            </Link>
+          </Cart>
+        </div>
+      )}
     </div>
   );
 };
