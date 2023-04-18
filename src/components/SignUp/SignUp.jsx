@@ -1,5 +1,7 @@
-import React, { useRef, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import { FaBeer, FaEye, FaEyeSlash } from "react-icons/fa";
+import { AuthContext } from "../../context/AuthProvider";
+import { Link } from "react-router-dom";
 const SignUp = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -9,14 +11,15 @@ const SignUp = () => {
   const emailRef = useRef();
   const passwordRef = useRef();
   const confirmPasswordRef = useRef();
+  const { createUserWithEmail } = useContext(AuthContext);
 
-  function handleSubmit(event) {
+  const handleSigUp = (event) => {
     event.preventDefault();
     const nameValue = nameRef.current.value;
     const emailValue = emailRef.current.value;
     const passwordValue = passwordRef.current.value;
     const confirmPasswordValue = confirmPasswordRef.current.value;
-
+    setPasswordError("");
     if (passwordValue !== confirmPasswordValue) {
       setPasswordError("Passwords do not match");
     } else if (passwordValue.length < 6) {
@@ -31,10 +34,13 @@ const SignUp = () => {
       setPasswordError(
         "Password must contain at least one special character (@#$%^&+=)"
       );
-    } else {
-      setPasswordError("");
     }
-  }
+    createUserWithEmail(emailValue, passwordValue)
+      .then((result) => console.log(result.user))
+      .catch((error) => {
+        console.log("createuser", error);
+      });
+  };
 
   function handleShowPassword() {
     setShowPassword(!showPassword);
@@ -45,10 +51,10 @@ const SignUp = () => {
   }
 
   return (
-    <div className="h-screen bg-primary-100 flex items-center justify-center">
+    <div className="bg-primary-100 flex items-center justify-center">
       <div className="max-w-lg w-full p-10 bg-white rounded-lg shadow-lg">
-        <h2 className="font-bold text-4xl py-5 text-center">Sign Up</h2>
-        <form className="space-y-6" onSubmit={handleSubmit}>
+        <h2 className="font-bold text-4xl py-5 text-center">Create account </h2>
+        <form className="space-y-4" onSubmit={handleSigUp}>
           <div className="form-control">
             <label className="label">
               <span className="label-text text-gray-800">Name</span>
@@ -128,7 +134,7 @@ const SignUp = () => {
               type="submit"
               className="btn bg-orange-400 border-none hover:bg-orange-300"
             >
-              Sign up
+              Register
             </button>
             <button
               type="submit"
@@ -141,6 +147,12 @@ const SignUp = () => {
               />
               Google Sign In
             </button>
+            <p className="text-center font-bold">
+              Already have an account?{" "}
+              <Link to="/signin" className="btn btn-link">
+                Sign in
+              </Link>{" "}
+            </p>
           </div>
         </form>
       </div>
